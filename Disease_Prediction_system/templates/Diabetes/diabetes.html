@@ -1,0 +1,122 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block header %}
+  <title>Diabetes</title>
+{% endblock %}
+        
+
+          {% block content %}
+
+          <div class="container">
+            <h1 class='heading text-center'>Diabetes</h1>
+            
+          </div>
+      
+         
+
+
+        <!-- container -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md ">
+
+              <br><br>
+              <form  action="{% url 'diabetesresult' %}" method="POST">
+                {% csrf_token %} 
+                  <div class="form-group">
+                    <label for="name">Patient Name</label>
+                    <input type="text" class="form-control" id="name" name="Patient_name" aria-describedby="nameHelp" placeholder="Enter name" required>
+                    <small id="nameHelp" class="form-text text-muted">We'll never share your Name with anyone else.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="gender">Gender</label><br>
+                    <input type="radio" id="male" name="Gender" value="male" onclick="changevalue()">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="Gender" value="female" onclick="disablefield()">
+                    <label for="female">Female</label>  
+                  </div>
+                    
+                  <div class="form-group">
+                      <label for="pragnancy">Pregnancy</label>
+                      <input type="text" class="form-control" id="prag" name="Pregnancy" aria-describedby="pregnancy" placeholder="0-10" required>
+                      <small id="pragnancy" class="form-text text-muted">( Number of times patient was pragnant )</small>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="glucose">Glucose</label>
+                      <input type="text" class="form-control" id="glucose" name="Glucose"  placeholder="Enter glucose level" required>
+                      
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="bp">Blood Pressure</label>
+                      <input type="text" class="form-control" id="bp" name="Blood_Pressure"  placeholder="Enter blood pressure" required>
+                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="skin">Skin Thickness</label>
+                      <input type="text" class="form-control" id="skin" name="Skin_thickness"  placeholder="Enter skin thickness" required>
+                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="insulin">Insulin</label>
+                      <input type="text" class="form-control" id="insulin" name="Insulin"  placeholder="Enter insulin level" required>
+                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="bmi">BMI</label>
+                      <input type="text" class="form-control" id="bmi" name="BMI"  placeholder="Enter body mass index" required>
+                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function</label>
+                      <input type="text" class="form-control" id="DiabetesPedigreeFunction" name="Diabetes_Pedigree_Function"  placeholder="Enter diabetes pedigree function" required>
+                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="age">Age</label>
+                      <input type="text" class="form-control" id="age" name="Age"  placeholder="Enter patient age" required>
+                      
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+           
+            <div class="col-md">
+              <img src="{% static 'img/health.png' %}" class="img-fluid" alt="Responsive image">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- end containers -->
+        <br>
+        <div class="container" style="background-color: rgb(232, 240, 252);">
+          <p>Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy.</p>
+       
+        </div>
+
+        <script>
+          // document.getElementById('male').onselect = changevalue;    
+
+          function changevalue() {
+              document.getElementById('prag').value = "0";
+              document.getElementById('prag').disabled = true;
+              return false;
+          } 
+
+          function disablefield(){
+            document.getElementById('prag').disabled = false;
+          }
+        </script>
+
+          {% endblock%}
+          

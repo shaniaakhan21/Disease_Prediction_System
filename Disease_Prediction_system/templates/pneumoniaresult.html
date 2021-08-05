@@ -1,0 +1,131 @@
+{% extends 'base.html'%}
+
+{% block header %}
+  <title>Pneumonia Result</title>
+{% endblock %}
+        
+{% block content %}
+
+
+
+          <div class="container">
+              <h1 class='heading text-center'>Patient Report</h1>
+              
+            </div>
+        
+           
+
+
+          <!-- container -->
+          <div class="container">
+            <div class="row">
+              <div class="col-md ">
+
+                <br>
+   
+
+                {% if  result %}
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th scope="col" colspan="3">Patient Details</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>Name :</td>
+                        {% if result['gender']=='male' %}
+                        <td colspan="2">Mr. {{ result['name'] }}</td>
+                        {% else %}
+                        <td colspan="2">Mrs. {{ result['name'] }}</td>
+                        {% endif %}
+                       
+                      </tr>
+                      <tr>
+                        
+                        <td>Gender :</td>
+                        <td colspan="3">{{ result['gender'] }}</td>
+                       
+                      </tr>
+                      <tr>
+                       
+                        <td>Age :</td>
+                        <td colspan="3">{{ result['age'] }}</td>
+                        
+                      </tr>
+
+                      <tr>
+
+                        <td>Report :</td>
+                        {% if result['report'][0] == 1  %}
+                            
+                            <td>You have {{result['probablity'] }}% chance of Pneumonia</td>
+
+                        {% else %}
+                            <td>You have {{result['probablity']}}% chance of Pneumonia</td>
+                        {% endif %}
+
+                        {% if result['probablity'] <= 40 %}
+
+                            <td><span style="color: rgb(11, 248, 11); font-weight: bold;">Low Risk</span></td>
+
+                        {% elif result['probablity'] > 40 and result['probablity'] <= 55 %}
+                            <td><span style="color: rgb(248, 224, 11);  font-weight: bold;">Mild</span></td>
+
+                        {% elif result['probablity'] > 55 and result['probablity'] <= 80 %}
+                            <td><span style="color: rgb(255, 115, 0);  font-weight: bold;">Risk</span></td>
+
+                        {% elif result['probablity'] > 80 and result['probablity'] <= 100 %}
+                            
+                          <td><span style="color: rgb(253, 0, 0);  font-weight: bold;">High Risk</span></td>
+
+                        {% endif %}
+
+                        
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+
+                {% endif %}
+
+                <h4>Prevention</h4>
+                <p>There are two kinds of shots for bacterial pneumonia:</p>
+                <ol>
+                    <li>PCV13 (Prevnar 13) is for:</li>
+                    <ul>
+                        <li>People 65 or older </li>
+                        <li>Kids under 5 years</li>
+                        <li>People who have a high risk of bacterial pneumonia</li>
+                    </ul>
+                    <li>PPSV23 (Pneumovax) is for:</li>
+                    <ul>
+                        <li>People 65 or older </li>
+                        <li>Children older than 2 who have a high risk of bacterial pneumonia</li>
+                        <li>People between 19 and 64 who smoke or have asthma</li>
+                    </ul>
+                    
+                </ol>
+              </div>
+             <br>
+              <div class="col-md">
+                <br>
+                <br>
+                <center><img src="{{ result['image']}}" class="img-fluid" alt="Responsive image"></center>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- end containers -->
+          <br>
+       
+        
+  
+{% endblock%}

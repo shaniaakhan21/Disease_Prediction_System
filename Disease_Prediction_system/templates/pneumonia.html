@@ -1,0 +1,108 @@
+{% extends 'base.html'%}
+
+
+{% block header %}
+  <title>Pneumonia</title>
+{% endblock %}
+        
+
+
+{% block content %}
+
+<div class="container">
+  <h1 class='heading text-center'>Pneumonia</h1>
+  
+</div>
+
+
+
+
+<!-- container -->
+<div class="container">
+<div class="row">
+  <div class="col-md ">
+
+    <br><br>
+    <form  action="{{ url_for('pneumoniaresult') }}" method="POST"  enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="name">Patient Name</label>
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Enter name" required>
+            <small id="nameHelp" class="form-text text-muted">We'll never share your Name with anyone else.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender</label><br>
+            <input type="radio" id="male" name="gender" value="male" onclick="changevalue()">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" onclick="disablefield()">
+            <label for="female">Female</label>  
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" class="form-control" id="age" name="age"  placeholder="Enter patient age" required>
+            
+        </div>
+
+        <div class="form-group">
+          <label for="file">Chest X-Ray Image</label>
+          <input type="file" class="form-control" id="img" name="img" aria-describedby="nameHelp" placeholder="Enter name" required oninput="checkextention()">
+          <p id="msg"></p>
+        </div>
+
+
+        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+  </div>
+ 
+  <div class="col-md">
+    <img src="{{ url_for('static',filename = 'img/health.png')}}" class="img-fluid" alt="Responsive image">
+  </div>
+</div>
+</div>
+
+
+<!-- end containers -->
+<br>
+
+
+<script>
+// document.getElementById('male').onselect = changevalue;    
+
+function checkextention() {
+    var validFileExtensions = ["jpg", "jpeg", "bmp", "png",'JPG'];    
+    var name = document.getElementById('img').value;
+    var extension = name.replace(/^.*\./, '');
+    var count = 0;
+    for(let i in validFileExtensions)
+    {
+      if(extension==validFileExtensions[i])
+      {
+        //document.getElementById('msg').innerHTML = extension; -
+        count = count + 1;
+      }
+
+    }
+    if(count==0)
+    {
+      document.getElementById('msg').style.color = 'red';
+      document.getElementById('msg').innerHTML = extension+" file is not allowed.";
+
+      document.getElementById('submit').disabled = true;
+    }
+    else
+    {
+      document.getElementById('msg').innerHTML ='';
+      document.getElementById('submit').disabled = false;
+    }
+    
+      
+    return false;
+} 
+
+</script>
+
+{% endblock%}
+          

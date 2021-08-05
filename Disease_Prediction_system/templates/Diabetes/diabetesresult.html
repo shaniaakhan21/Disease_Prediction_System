@@ -1,0 +1,140 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block header %}
+  <title>Diabetes Result</title>
+{% endblock %}
+        
+{% block content %}
+
+
+
+          <div class="container">
+              <h1 class='heading text-center'>Patient Report</h1>
+              
+            </div>
+        
+           
+
+
+          <!-- container -->
+          <div class="container">
+            <div class="row">
+              <div class="col-md ">
+
+                <br>
+   
+
+                
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th scope="col" colspan="3">Patient Details</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>Name :</td>
+                        {% if Gender == 'male' %}
+                        <td colspan="2">Mr. {{ Patient_name }}</td>
+                        {% else %}
+                        <td colspan="2">Mrs. {{ Patient_name }}</td>
+                        {% endif %}
+                       
+                      </tr>
+                      <tr>
+                        
+                        <td>Gender :</td>
+                        <td colspan="3">{{ Gender }}</td>
+                       
+                      </tr>
+                      <tr>
+                       
+                        <td>Age :</td>
+                        <td colspan="3">{{ Age }}</td>
+                        
+                      </tr>
+
+                      <tr>
+
+                        <td>Report :</td>
+                        {% if Report == 1  %}
+                            
+                            <td>You have {{ Probablity }}% chance of Diabetes</td>
+
+                        {% else %}
+                            <td>You have {{ Probablity }}% chance of Diabetes</td>
+                        {% endif %}
+
+                        {% if Probablity <= 40 %}
+
+                            <td><span style="color: rgb(11, 248, 11); font-weight: bold;">Low Risk</span></td>
+
+                        {% elif Probablity > 40 and Probablity <= 55 %}
+                            <td><span style="color: rgb(248, 224, 11);  font-weight: bold;">Mild</span></td>
+
+                        {% elif Probablity > 55 and Probablity <= 80 %}
+                            <td><span style="color: rgb(255, 115, 0);  font-weight: bold;">Risk</span></td>
+
+                        {% elif Probablity > 80 and Probablity <= 100 %}
+                            
+                          <td><span style="color: rgb(253, 0, 0);  font-weight: bold;">High Risk</span></td>
+
+                        {% endif %}
+
+                        
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+
+                
+
+                <h4>Precautions:</h4>
+                <ol>
+                    <li>Make a commitment to managing your diabetes</li>
+                    <ul>
+                        <li>Members of your diabetes care team — doctor or primary care provider, diabetes nurse educator, and dietitian, for example — can help you learn the basics of diabetes care and offer support along the way. But it's up to you to manage your condition.</li>
+                    </ul>
+                    
+                    <li>Don't smoke</li>
+                    <ul>
+                        <li>Smoking increases your risk of type 2 diabetes and the risk of various diabetes complications.</li>
+                    </ul>
+                    <li>Keep your blood pressure and cholesterol under control</li>
+                    <ul>
+                        <li>Like diabetes, high blood pressure can damage your blood vessels. High cholesterol is a concern, too, since the damage is often worse and more rapid when you have diabetes. When these conditions team up, they can lead to a heart attack, stroke or other life-threatening conditions.</li>
+                    </ul>
+                    <li>Schedule regular physicals and eye exams</li>
+                    <ul>
+                        <li>Schedule two to four diabetes checkups a year, in addition to your yearly physical and routine eye exams.</li>
+                    </ul>
+                    <li>Keep your vaccines up to date</li>
+                    <ul>
+                        <li>Diabetes makes it more likely you'll get certain illnesses. Routine vaccines can help prevent them.</li>
+                    </ul>
+                </ol>
+              </div>
+             
+              <div class="col-md">
+                <img src="{% static 'img/health.png' %}" class="img-fluid" alt="Responsive image">
+              </div>
+            </div>
+          </div>
+
+
+          <!-- end containers -->
+          <br>
+          <div class="container" style="background-color: rgb(232, 240, 252);">
+            <p>Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy.</p>
+         
+        </div>
+       
+        
+  
+{% endblock%}
